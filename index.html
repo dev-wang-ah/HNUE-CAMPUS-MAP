@@ -1,0 +1,23 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Bản đồ HNUE — chỉ đường trong khuôn viên</title><link rel="stylesheet" href="app/map.css"></head><body>
+<canvas id="cv"></canvas>
+<div id="top"><div id="sr" class="g"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg><input id="q" placeholder="Tìm tòa nhà, quán ăn, khoa, cổng…" autocomplete="off"><button id="dirb" class="ib" title="Chỉ đường"><svg viewBox="0 0 24 24"><path d="M5 12h9a4 4 0 004-4V4M15 1l3 3 3-3M5 12l3-3M5 12l3 3M5 20h14"/></svg></button></div><div id="sg" class="g"></div><div id="chips"></div></div>
+<div id="ctl" class="g"><button id="zi" title="Phóng to">+</button><button id="zo" title="Thu nhỏ">−</button><button id="cp" title="Hướng bắc / xoay"><svg viewBox="0 0 24 24"><path d="M12 3l4 9h-8z"/><path d="M12 21l-4-9h8z" opacity=".35"/></svg></button><button id="tl" title="2D / 2.5D">2.5D</button><button id="lc" title="Vị trí của tôi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="7.5"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3"/></svg></button><button id="hm" title="Toàn khuôn viên"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9h-5v-6H9v6H4z"/></svg></button><button id="ly" title="Lớp bản đồ"><svg viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg></button><button id="ed" title="Chỉnh sửa bản đồ"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-7h6v7"/><path d="M17 4l3 3"/></svg></button></div>
+<div id="lyp" class="g"><label><input type="checkbox" id="oL" checked> Tên công trình</label><label><input type="checkbox" id="oP" checked> Điểm tiện ích</label><label><input type="checkbox" id="oT" checked> Cây xanh</label><label><input type="checkbox" id="oS" checked> Bóng đổ</label><label><input type="checkbox" id="oD"> Chế độ tối</label><label><input type="checkbox" id="oH"> Xoay theo hướng đi</label></div>
+<section id="bp" class="g" aria-label="Chỉnh sửa bản đồ">
+ <header><div><small>CHẾ ĐỘ SÁNG TẠO</small><b>Xây dựng bản đồ</b></div><button id="bpx" class="ib" title="Đóng">✕</button></header>
+ <p class="bp-hint">Chọn loại công trình rồi nhấp bản đồ để đặt. Kéo để xoay hoặc di chuyển như bình thường.</p>
+ <div id="bp-tools"><button class="on" data-build-tool="place">＋ Đặt</button><button data-build-tool="erase">⌫ Xóa</button></div>
+ <div id="bp-types"></div>
+ <div class="bp-range"><label>Kích thước <output id="bsize-v"></output><input id="bsize" type="range" min="6" max="24" step="2" value="12"></label><label>Chiều cao <output id="bheight-v"></output><input id="bheight" type="range" min="3" max="24" step="3" value="9"></label></div>
+ <div class="bp-actions"><button id="bundo" title="Hoàn tác">↶ Hoàn tác</button><button id="bredo" title="Làm lại">↷ Làm lại</button></div>
+ <div class="bp-actions"><button id="bsave">Lưu</button><button id="bexport">Xuất JSON</button><button id="bimport">Nhập</button><button id="bclear">Xóa tất cả</button></div>
+ <input id="bfile" type="file" accept="application/json,.json" hidden>
+ <div id="bstatus">Chỉ sửa các công trình bạn tự đặt.</div>
+</section>
+<div id="dir" class="g"><div class="row"><i class="dot a"></i><input id="oi" placeholder="Điểm xuất phát (mặc định: vị trí của tôi)" autocomplete="off"></div><div class="row"><i class="dot b"></i><input id="di" placeholder="Điểm đến" autocomplete="off"></div><div id="dsg"></div>
+<div class="row sp"><div class="seg"><button id="mw" class="on">Đi bộ</button><button id="mb">Xe đạp</button></div><button id="sw" class="ib" title="Đổi chiều">⇅</button><button id="dx" class="ib" title="Đóng">✕</button></div>
+<div id="sum"></div><div id="stp"></div><div class="row"><button id="go" class="pri">Bắt đầu dẫn đường</button><button id="sim" class="sec" title="Mô phỏng đi theo tuyến">Mô phỏng</button></div></div>
+<div id="card" class="g"></div><div id="nav" class="g"></div><div id="ctx" class="g"></div><div id="toast"></div>
+<button id="gbtn" class="g" title="Mở game pixel HNUE"><svg viewBox="0 0 12 12" shape-rendering="crispEdges"><path fill="#f0b552" d="M5 1h2v1h1v1h1v1h1v1h1v6H0V5h1V4h1V3h1V2h1z"/><path fill="#26141c" d="M5 7h2v4H5zM2 6h2v2H2zM8 6h2v2H8z"/></svg><span><b>Game pixel</b><small>Khám phá trường</small></span></button>
+<div id="gmod"><button id="gx">✕ Về bản đồ</button><iframe id="gfr" title="Game pixel HNUE"></iframe></div>
+<script src="data/map-data.js"></script><script src="data/map-extra.js"></script><script src="app/map.js"></script></body></html>

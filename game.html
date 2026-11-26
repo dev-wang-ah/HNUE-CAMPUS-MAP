@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>HNUE Pixel Campus · game 2D pixel theo bản đồ thật</title>
+<link rel="stylesheet" href="css/style.css?v=15-icons"></head><body>
+<canvas id="c"></canvas>
+<div id="hud" class="pn"><b>HNUE Pixel Campus</b><i id="pl">…</i><i id="clk"></i></div>
+<div id="gm" class="pn"></div>
+<div id="bt" class="pn"><button class="bt" id="bm" title="GPS / tự đi" data-glyph="compass"></button><button class="bt" id="bl" title="Địa điểm" data-glyph="building"></button><button class="bt" id="bd" title="Giờ trong ngày" data-glyph="day"></button></div>
+<div id="mm" class="pn"><canvas id="mc" width="128" height="128"></canvas></div>
+<div id="dp"><button class="bt" data-k="w" data-glyph="up" title="Đi lên" style="grid-area:1/2"></button><button class="bt" data-k="a" data-glyph="left" title="Đi trái" style="grid-area:2/1"></button><button class="bt" data-k="s" data-glyph="down" title="Đi xuống" style="grid-area:3/2"></button><button class="bt" data-k="d" data-glyph="right" title="Đi phải" style="grid-area:2/3"></button></div>
+<div id="tt" class="pn"></div><div id="ic" class="pn"></div><div id="lm" class="pn"></div>
+
+<script src="data/map-data.js"></script>
+<script src="data/sprite-manifest.js"></script>
+<script src="data/sprites-packed.js"></script>
+<script src="data/tex-detail.js"></script>
+<script src="js/00-core.js"></script>
+<script src="js/01-map.js"></script>
+<script src="js/02-ground.js"></script>
+<script src="js/03-sprites.js"></script>
+<script src="js/04-entities.js"></script>
+<script src="js/05-daynight.js"></script>
+<script src="js/06-render.js"></script>
+<script src="js/07-ui.js"></script>
+<script src="js/08-gps.js"></script>
+<script src="js/09-minimap.js"></script>
+<script src="js/11-game.js"></script>
+<script src="js/12-pixel.js"></script>
+<script src="js/13-view.js"></script>
+<script src="js/15-shader.js"></script>
+<script src="js/16-ui.js?v=17-rust-icons"></script>
+<script src="js/10-loop.js"></script>
+<script src="js/14-init.js"></script>
+</body></html>
